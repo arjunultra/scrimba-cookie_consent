@@ -3,6 +3,8 @@ const declineBtn = document.getElementById("decline-btn");
 const btnContainer = document.querySelector(".modal-choice-btns");
 const formEl = document.getElementById("form-el");
 const modalText = document.getElementById("modal-text");
+const modalInner = document.getElementById("modal-inner");
+const modalCloseBtn = document.getElementById("modal-close-btn");
 
 setTimeout(function () {
   myModal.style.display = "block";
@@ -14,8 +16,22 @@ declineBtn.addEventListener("mouseenter", function () {
 formEl.addEventListener("submit", function (event) {
   setTimeout(function () {
     const uploadText = document.getElementById("upload-text");
+    const consentFormData = new FormData(formEl);
+    console.log(consentFormData);
     uploadText.innerText = "Making the Sale.....";
   }, 1500);
+  setTimeout(function () {
+    modalInner.innerHTML = `<h2>Thanks <span class="modal-display-name">${userName} </span>, you sucker! </h2>
+    <p>We just sold the rights to your eternal soul.</p>
+    <div class="idiot-gif">
+        <img src="images/pirate.gif">
+    </div>
+    `;
+  }, 3000);
+  modalCloseBtn.removeAttribute("disabled");
+  modalCloseBtn.addEventListener("click", function () {
+    myModal.style.display = "none";
+  });
   event.preventDefault();
   modalText.innerHTML = `<div class="modal-inner-loading">
   <img src="images/loading.svg" class="loading">
