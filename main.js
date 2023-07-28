@@ -34,5 +34,9 @@ formEl.addEventListener("submit", function (event) {
         <img src="images/pirate.gif">
     </div>
     `;
+    modalCloseBtn.removeAttribute("disabled");
+    modalCloseBtn.addEventListener("click", function () {
+      myModal.style.display = "none";
+    });
   }, 3000);
 });
