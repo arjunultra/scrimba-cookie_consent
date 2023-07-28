@@ -14,10 +14,17 @@ declineBtn.addEventListener("mouseenter", function () {
   btnContainer.classList.toggle("reverse");
 });
 formEl.addEventListener("submit", function (event) {
+  event.preventDefault();
+  const consentFormData = new FormData(formEl);
+  let userName = consentFormData.get("fullname");
+  modalText.innerHTML = `
+    <div class="modal-inner-loading">
+        <img src="images/loading.svg" class="loading">
+        <p id="upload-text">Uploading your data to the dark web...</p>
+    </div>`;
   setTimeout(function () {
     const uploadText = document.getElementById("upload-text");
-    const consentFormData = new FormData(formEl);
-    console.log(consentFormData);
+
     uploadText.innerText = "Making the Sale.....";
   }, 1500);
   setTimeout(function () {
@@ -28,15 +35,4 @@ formEl.addEventListener("submit", function (event) {
     </div>
     `;
   }, 3000);
-  modalCloseBtn.removeAttribute("disabled");
-  modalCloseBtn.addEventListener("click", function () {
-    myModal.style.display = "none";
-  });
-  event.preventDefault();
-  modalText.innerHTML = `<div class="modal-inner-loading">
-  <img src="images/loading.svg" class="loading">
-  <p id="upload-text">
-      Uploading your data to the dark web...
-  </p>
-</div>`;
 });
